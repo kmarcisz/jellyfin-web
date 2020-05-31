@@ -1,3 +1,5 @@
+import getVideoQualityOptions from 'qualityOptions';
+
 define(['connectionManager', 'actionsheet', 'datetime', 'playbackManager', 'globalize', 'appSettings', 'qualityoptions'], function (connectionManager, actionsheet, datetime, playbackManager, globalize, appSettings, qualityoptions) {
     'use strict';
 
@@ -9,7 +11,7 @@ define(['connectionManager', 'actionsheet', 'datetime', 'playbackManager', 'glob
         var videoWidth = videoStream ? videoStream.Width : null;
         var videoHeight = videoStream ? videoStream.Height : null;
 
-        var options = qualityoptions.getVideoQualityOptions({
+        var options = getVideoQualityOptions({
             currentMaxBitrate: playbackManager.getMaxStreamingBitrate(player),
             isAutomaticBitrateEnabled: playbackManager.enableAutomaticBitrateDetection(player),
             videoWidth: videoWidth,
@@ -95,7 +97,7 @@ define(['connectionManager', 'actionsheet', 'datetime', 'playbackManager', 'glob
         var videoWidth = videoStream ? videoStream.Width : null;
         var videoHeight = videoStream ? videoStream.Height : null;
 
-        var options = qualityoptions.getVideoQualityOptions({
+        var options = getVideoQualityOptions({
             currentMaxBitrate: playbackManager.getMaxStreamingBitrate(player),
             isAutomaticBitrateEnabled: playbackManager.enableAutomaticBitrateDetection(player),
             videoWidth: videoWidth,

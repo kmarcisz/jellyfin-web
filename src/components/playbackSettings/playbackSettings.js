@@ -1,3 +1,5 @@
+import { getAudioQualityOptions, getVideoQualityOptions } from 'qualityOptions';
+
 define(['require', 'browser', 'appSettings', 'apphost', 'focusManager', 'qualityoptions', 'globalize', 'loading', 'connectionManager', 'dom', 'events', 'emby-select', 'emby-checkbox'], function (require, browser, appSettings, appHost, focusManager, qualityoptions, globalize, loading, connectionManager, dom, events) {
     'use strict';
 
@@ -33,13 +35,13 @@ define(['require', 'browser', 'appSettings', 'apphost', 'focusManager', 'quality
 
     function setMaxBitrateIntoField(select, isInNetwork, mediatype) {
 
-        var options = mediatype === 'Audio' ? qualityoptions.getAudioQualityOptions({
+        var options = mediatype === 'Audio' ? getAudioQualityOptions({
 
             currentMaxBitrate: appSettings.maxStreamingBitrate(isInNetwork, mediatype),
             isAutomaticBitrateEnabled: appSettings.enableAutomaticBitrateDetection(isInNetwork, mediatype),
             enableAuto: true
 
-        }) : qualityoptions.getVideoQualityOptions({
+        }) : getVideoQualityOptions({
 
             currentMaxBitrate: appSettings.maxStreamingBitrate(isInNetwork, mediatype),
             isAutomaticBitrateEnabled: appSettings.enableAutomaticBitrateDetection(isInNetwork, mediatype),
@@ -62,7 +64,7 @@ define(['require', 'browser', 'appSettings', 'apphost', 'focusManager', 'quality
 
     function fillChromecastQuality(select) {
 
-        var options = qualityoptions.getVideoQualityOptions({
+        var options = getVideoQualityOptions({
 
             currentMaxBitrate: appSettings.maxChromecastBitrate(),
             isAutomaticBitrateEnabled: !appSettings.maxChromecastBitrate(),
